@@ -27,8 +27,8 @@ RUN curl -fL https://github.com/krallin/tini/releases/download/v0.5.0/tini-stati
 
 COPY init.groovy /usr/share/jenkins/ref/init.groovy.d/tcp-slave-agent-port.groovy
 
-ENV JENKINS_VERSION 1.642.2
-ENV JENKINS_SHA e72e06e64d23eefb13090459f517b0697aad7be0
+ENV JENKINS_VERSION 1.653
+ENV JENKINS_SHA 068171bfa327916764d8dbd42ab9e638665848c6
 
 
 # could use ADD but this one does not check Last-Modified header 
@@ -47,10 +47,17 @@ EXPOSE 50000
 
 ENV COPY_REFERENCE_FILE_LOG $JENKINS_HOME/copy_reference_file.log
 
+COPY plugins/ /usr/share/jenkins/ref/plugins
+RUN chown jenkins:jenkins -R /usr/share/jenkins/ref/plugins
 USER jenkins
 
 COPY jenkins.sh /usr/local/bin/jenkins.sh
 ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]
 
 # from a derived Dockerfile, can use `RUN plugins.sh active.txt` to setup /usr/share/jenkins/ref/plugins from a support bundle
+
 COPY plugins.sh /usr/local/bin/plugins.sh
+
+COPY plugins.txt /usr/share/jenkins/plugins.txt
+RUN bash -x /usr/local/bin/plugins.sh /usr/share/jenkins/plugins.txt
+
