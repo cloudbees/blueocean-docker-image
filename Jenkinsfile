@@ -1,3 +1,3 @@
 node {
-  docker.build "docker.cloudbees.com/cloudbees/blueocean"
+  sh "sudo docker -t docker.cloudbees.com/cloudbees/blueocean ."
 }
