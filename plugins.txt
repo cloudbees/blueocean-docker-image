@@ -45,3 +45,4 @@ workflow-step-api:1.14
 workflow-support:1.14
 favorite:1.16
 token-macro:1.12.1
+pipeline-stage-step:2.1-beta-1
