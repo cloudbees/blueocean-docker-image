@@ -43,6 +43,7 @@ workflow-multibranch:1.14
 workflow-scm-step:1.14
 workflow-step-api:1.14
 workflow-support:1.14
-favorite:1.16
+favorite:2.0.2
+blueocean-autofavorite:0.1
 token-macro:1.12.1
 pipeline-stage-step:2.1-beta-1
