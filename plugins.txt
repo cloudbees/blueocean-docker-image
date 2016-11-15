@@ -47,3 +47,4 @@ favorite:2.0.2
 blueocean-autofavorite:0.1
 token-macro:1.12.1
 pipeline-stage-step:2.1-beta-1
+jira-plugin:2.2.1
