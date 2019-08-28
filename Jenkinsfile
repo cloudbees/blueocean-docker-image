@@ -8,6 +8,10 @@ pipeline {
     timeout(time: 60, unit: "MINUTES")
   }
 
+  triggers {
+    upstream(upstreamProjects: 'blueocean/master', threshold: hudson.model.Result.SUCCESS) 
+  }
+
   stages {
     stage('update incrementals') {
       environment {
@@ -32,6 +36,12 @@ pipeline {
         withDockerRegistry([credentialsId: '81012788-1be1-49e4-bfab-a882101f0442', url: ""]) {
           sh('docker build -t blueocean/blueocean:ci-blueocean-io . && docker push blueocean/blueocean:ci-blueocean-io')
         }
+      }
+    }
+    stage('restart') {
+      agent none
+      steps {
+        build('/admin/restart-blueocean')
       }
     }
   }
