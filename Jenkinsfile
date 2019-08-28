@@ -28,7 +28,7 @@ pipeline {
 
       steps {
         withDockerRegistry([credentialsId: '81012788-1be1-49e4-bfab-a882101f0442', url: "https://registry.hub.docker.com"]) {
-          sh('docker build blueocean/blueocean:ci-blueocean-io && docker push')
+          sh('docker build -t blueocean/blueocean:ci-blueocean-io . && docker push blueocean/blueocean:ci-blueocean-io')
         }
       }
     }
