@@ -28,8 +28,8 @@ pipeline {
 
       steps {
         script {
-          docker.withRegistry("https://registry.hub.docker.com/","81012788-1be1-49e4-bfab-a882101f0442") {
-            docker.build("blueocean/blueocean:ci-blueocean-io").push()
+          withRegistry("https://registry.hub.docker.com/","81012788-1be1-49e4-bfab-a882101f0442") {
+            sh('docker build blueocean/blueocean:ci-blueocean-io && docker push')
           }
         }
       }
