@@ -10,7 +10,8 @@ pipeline {
     stage('update incrementals') {
       environment {
         GITHUB = credentials("e1729308-6350-4c74-9537-91f8413129a7") 
-        HOME = "/tmp"
+        GITHUB_LOGIN = "${GITHUB_USR}"
+        GITHUB_PASSWORD = "${GITHUB_PSW}"
       }
       agent {
         docker {
@@ -18,7 +19,6 @@ pipeline {
         }
       }
       steps {
-        sh('echo -e "login=${GITHUB_USR}\npassword=${GITHUB_PSW}\n" > ~/.github')
         sh('mvn io.jenkins.tools.incrementals:incrementals-maven-plugin:updatePluginsTxt -DpluginsFile=plugins.txt')
       }
     }
