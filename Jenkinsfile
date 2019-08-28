@@ -27,7 +27,7 @@ pipeline {
       agent any
 
       steps {
-        withDockerRegistry([credentialsId: '81012788-1be1-49e4-bfab-a882101f0442']) {
+        withDockerRegistry([credentialsId: '81012788-1be1-49e4-bfab-a882101f0442', url: ""]) {
           sh('docker build -t blueocean/blueocean:ci-blueocean-io . && docker push blueocean/blueocean:ci-blueocean-io')
         }
       }
