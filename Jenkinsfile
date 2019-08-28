@@ -7,8 +7,8 @@ pipeline {
   }
 
   stages {
-    environment { GITHUB = credentials("e1729308-6350-4c74-9537-91f8413129a7") }
     stage('update incrementals') {
+      environment { GITHUB = credentials("e1729308-6350-4c74-9537-91f8413129a7") }
       agent {
         docker {
           image 'maven:3-alpine'
