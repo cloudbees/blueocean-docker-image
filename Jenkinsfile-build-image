@@ -12,8 +12,8 @@ pipeline {
     stage('Build docker build image') {
       steps {
         withDockerRegistry([credentialsId: '81012788-1be1-49e4-bfab-a882101f0442', url: ""]) {
-          sh('docker build -t blueocean/blueocean_build_env:master --build-arg GID=$(id -g ${USER}) --build-arg UID=$(id -u ${USER}) - < Dockerfile.build')
-          sh('docker push blueocean/blueocean_build_env:master')
+          sh('docker build -t blueocean/blueocean:build_env --build-arg GID=$(id -g ${USER}) --build-arg UID=$(id -u ${USER}) - < Dockerfile.build')
+          sh('docker push blueocean/blueocean:build_env')
         }
       }
     }
